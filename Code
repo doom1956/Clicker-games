@@ -1,0 +1,46 @@
+import time
+
+# Global variables
+clicks = 0
+click_value = 1
+
+# Function to handle the click event
+def handle_click():
+    global clicks
+    clicks += click_value
+    print(f"Clicks: {clicks}")
+
+# Function to handle the upgrade event
+def handle_upgrade():
+    global clicks, click_value
+    upgrade_cost = click_value * 10
+    if clicks >= upgrade_cost:
+        clicks -= upgrade_cost
+        click_value += 1
+        print(f"You upgraded your click value! Clicks: {clicks} Click Value: {click_value}")
+    else:
+        print("Not enough clicks to upgrade!")
+
+# Main game loop
+def play_game():
+    while True:
+        print("1. Click")
+        print("2. Upgrade")
+        print("3. Quit")
+        choice = input("Enter your choice: ")
+
+        if choice == "1":
+            handle_click()
+        elif choice == "2":
+            handle_upgrade()
+        elif choice == "3":
+            print("Thanks for playing!")
+            break
+        else:
+            print("Invalid choice!")
+
+        time.sleep(0.5)  # Delay to make it easier to read the output
+
+# Start the game
+print("Welcome to the Clicker Game!")
+play_game()
